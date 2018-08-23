@@ -1,0 +1,42 @@
+name:                glue
+version:             0.1.0.0
+github:              "arendsee/glue"
+license:             BSD3
+author:              "Zebulun Arendsee"
+maintainer:          "zbwrbz@gmail.com"
+copyright:           "2018 Zebulun Arendsee"
+synopsis:            A toy package for inserting variables into strings
+category:            String
+description:         See GitHub README <https://github.com/githubuser/glue#readme>
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  glue-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - glue
+
+tests:
+  glue-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - glue
