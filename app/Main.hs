@@ -1,5 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE OverloadedStrings, TemplateHaskell, QuasiQuotes #-}
 
 module Main where
 
@@ -9,9 +8,12 @@ import qualified Text.PrettyPrint.Leijen.Text as P
 foo :: (Int, Int, Int) -> Int
 foo (a,b,c) = a + b + c
 
+you = "Bob Filthermyster"
+
 main :: IO ()
 main = do
   print $  $(curryN 3) foo 1 3 5
+  P.putDoc [verbatim|hi ${you}
+      voodooo  
 
--- main = P.putDoc [doc|hi ${you}|] where
---   you = "Bob Filthermyster"
+|]
