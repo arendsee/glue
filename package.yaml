@@ -10,11 +10,14 @@ category:            String
 description:         See GitHub README <https://github.com/githubuser/glue#readme>
 
 extra-source-files:
-- README.md
-- ChangeLog.md
+    - README.md
+    - ChangeLog.md
 
 dependencies:
-- base >= 4.7 && < 5
+    - base >= 4.7 && < 5
+    - wl-pprint-text
+    - template-haskell
+
 
 library:
   source-dirs: src
