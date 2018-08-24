@@ -21,3 +21,5 @@ main = do
       voodooo } 
 
 |]
+  P.putDoc [perl|hi $you ... I have \$5 in my pocket
+|]

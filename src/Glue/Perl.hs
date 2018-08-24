@@ -1,8 +1,7 @@
-{-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE TemplateHaskell, QuasiQuotes #-}
 
-module Glue.Substitute (
-    substitute
+module Glue.Perl (
+    perl
 ) where
 
 import Language.Haskell.TH
@@ -11,8 +10,8 @@ import qualified Text.PrettyPrint.Leijen.Text  as Gen
 import Text.Parsec
 import Text.Parsec.Char
 
-substitute :: QuasiQuoter
-substitute = QuasiQuoter {
+perl :: QuasiQuoter
+perl = QuasiQuoter {
     quoteExp  = compile
   , quotePat  = error "Can't handle patterns"
   , quoteType = error "Can't handle types"
@@ -33,10 +32,10 @@ type Parser = Parsec String ()
 data I = S String | V String
 
 pIs :: Parser [I]
-pIs = many1 (pV <|> pS) <* eof
+pIs = many1 (pS <|> pV) <* eof
 
 pV :: Parser I
-pV = fmap V $ char '$' >> between (char '{') (char '}') (many1 (noneOf "}")) 
+pV = fmap V $ (char '$') >> (many1 (alphaNum)) 
 
 pS :: Parser I
-pS = fmap S $ many1 (noneOf "$")
+pS = fmap S $ many1 (try (char '\\' >> char '$') <|> noneOf "$")
