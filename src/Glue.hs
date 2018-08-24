@@ -2,9 +2,9 @@ module Glue
 (
     curryN
   , verbatim
-  , interpolated
+  , substitute 
 ) where
 
 import Glue.Curry
 import Glue.Verbatim
-import Glue.Interpolated
+import Glue.Substitute

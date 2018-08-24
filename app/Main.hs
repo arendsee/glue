@@ -17,3 +17,7 @@ main = do
       voodooo  
 
 |]
+  P.putDoc [substitute|hi ...${you}...
+      voodooo } 
+
+|]
